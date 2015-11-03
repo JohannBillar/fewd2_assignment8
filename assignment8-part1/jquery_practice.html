@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Assignment 8 Part 1| JQuery Events</title>
+	<link rel="stylesheet" href="css/styles.css">
+	<script src="js/jquery-2.1.4.min.js"></script>
+  <script>
+		$(function() {
+			//STEP 1
+			$('body').append('<button>Button 1</button>');
+			$('body button:eq(0)').click(function(event) {
+				alert("Button with .click() method");
+			});
+			//STEP 2
+			$('body').append('<button>Button 2</button>');
+			$('body button:eq(1)').bind("click", function(event) {
+				alert("Button with .bind() method");
+			});
+			//STEP 3
+			$('body').append('<button>Button 3</button>');
+			$('body button:eq(2)').on("click", function(event) {
+				alert("Button with .on() method");
+			});
+			//STEP 4
+			$('body').append('<section></section>');
+			$('section').append('<button>Button 4a</button>')
+					.append('<button>Button 4b</button>');
+			$('section').on("click", "button", function(event) {
+				alert("Buttons with single handler");
+			});
+			//STEP 5
+			$('body').append('<div>Waiting for mouse interaction!</div>');
+			$('div:first-of-type').height("400px").width("400px").css("border", "1px solid #333");
+			//Decided to used .one() method instead of .on() method
+			$('div').one({
+				click: function() {alert("Mouse Click!");},
+				mouseenter: function() {alert("Mouse Entered!");},
+				mouseleave: function() {alert("Mouse Left!");}
+			});
+			//STEP 6
+			$('div').wrapInner('<span></span>');
+			//STEP 7 
+			$('body').append('<a href="https://www.google.com/">Link</a>')
+			$('body a').on("click", function(e) {
+					e.preventDefault();
+					$('a').css("color", "red");
+					alert(e.target.nodeName + " is the node that triggered the event!");
+			});
+			//STEP 8
+			$('body').append('<div></div>');
+			$(window).resize(function() {
+			$('div:last-of-type').text("height:" + $(window).height() + " width:" + $(window).width());
+			});
+			//STEP 9
+			$('body').append('<label>STEP 9:</label><input>');
+			$('body input:eq(0)').attr("type", "text");
+			$('body input:eq(0)').focus(function() {
+				$('body input:eq(0)').addClass("highlight");
+			});
+			$('body input').focusout(function() {
+				$('body input').removeClass("highlight");
+			});
+			//STEP 10
+			$('body').append('<form></form>');
+			$('body form').append('<label>Name:</label><input type="text">').append('<label>Email:</label><input type="email">');
+			$('body form').append('<input type="button" value="SUBMIT">');
+			$('form input[type="button"]').on("click", function(event){
+				var userName = $('form input[type="text"]').val();
+				var userEmail = $('form input[type="email"]').val();
+				if(userName === ""){$('form input[type="text"]').addClass("warning");}
+				if(userEmail === ""){$('form input[type="email"]').addClass("warning");}
+				if(userName !== "" && userEmail !== ""){
+					$('form input[type="text"]').addClass("success");
+					$('form input[type="email"]').addClass("success");
+				}
+				if(userName === "" || userEmail === ""){alert("Please fill out both fields!");}
+			});
+		});
+	</script>
+</head>
+	<body>
+	</body>
+</html>
