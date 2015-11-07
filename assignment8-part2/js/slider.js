@@ -1,7 +1,5 @@
 $(function(){
-	//helper functions
-	function c(d){console.log(d);};
-	
+
 	// base page styles
 	$('html').css("height", "100%");
 	$('body').css("min-height", "100%");
@@ -61,10 +59,10 @@ $(function(){
 				fontStyle: "bold",
 				fontSize: "1.5em",	
 				textDecoration: "underline"
-			})};
-			//	jQuery slide magic
-			$('#slide').fadeOut(1000, function() {
+		})};
+		//	jQuery slide magic
+		$('#slide').fadeOut(1000, function(){
 			$('#slide').attr("src", slideSelect).fadeIn(1000);
 		});
-	});
-});			
+	}); //end click
+}); // end ready
