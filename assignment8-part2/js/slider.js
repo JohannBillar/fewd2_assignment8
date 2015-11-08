@@ -1,11 +1,9 @@
 $(function(){
-
 	// base page styles
 	$('html').css("height", "100%");
 	$('body').css("min-height", "100%");
 	$('main').css("margin", "0 20px");
 	$('#slideNavigation').css("padding-bottom", "20%");
-
 	//image base styles
 	$('main img').css({
 		width: "95%",
@@ -24,7 +22,6 @@ $(function(){
 		imageCache[imageCounter] = image;
 		imageCounter ++;
 	});
-
 	// create navigation
 	for(var i = 1; i <= imageCounter; i++) {
 		var span = "<span>" + "0" + i + "</span>";
